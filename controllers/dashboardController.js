@@ -76,11 +76,11 @@ exports.createProfilePostController = async (req, res, next) => {
     next(error);
   }
 
-  res.render('pages/dashboard/create-profile', {
-    tittle: 'Create Your Profile',
-    flashMessage: Flash.getMessage(req),
-    error: {},
-  });
+  // res.render('pages/dashboard/create-profile', {
+  //   tittle: 'Create Your Profile',
+  //   flashMessage: Flash.getMessage(req),
+  //   error: {},
+  // });
 };
 
 exports.editProfileGetController = async (req, res, next) => {
