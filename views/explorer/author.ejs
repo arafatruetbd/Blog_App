@@ -1,0 +1,64 @@
+<%- include('../partials/head.ejs') %>
+<div class="container">
+
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p> <img src="<%= author.profilePic %>" 
+                                alt=""
+                                class="img-thumbnail img-fluid rounded-circle"
+                                style="width: 300px;height: 300px;"></p>
+                           
+                      
+                            <h4 class="card-title"><%=author.profile.name %></h4>
+                            <h4 class="card-title"><%=author.profile.tittle %></h4>
+                            <p class="card-text"><%=author.profile.bio %></p>
+                            <ul class="list-inline">
+                                <% if (author.profile.links.website){ %>
+                                    <li class="list-inline-item">
+                                        <a href="<%= author.profile.links.website %>"
+                                            target="_blank">
+                                            <i class="fa fa-internet-explorer"></i>
+                                           </a>
+                                        </li>
+                                 <%}%>
+
+                                 <% if (author.profile.links.facebook){ %>
+                                    <li class="list-inline-item">
+                                        <a href="<%= author.profile.links.facebook %>"
+                                            target="_blank">
+                                            <i class="fab fa-facebook"></i>
+                                           </a>
+                                        </li>
+                                 <%}%>
+
+                                 <% if (author.profile.links.twitter){ %>
+                                    <li class="list-inline-item">
+                                        <a href="<%= author.profile.links.twitter %>"
+                                            target="_blank">
+                                            <i class="fab fa-twitter"></i>
+                                           </a>
+                                        </li>
+                                 <%}%>
+
+                                 <% if (author.profile.links.github){ %>
+                                    <li class="list-inline-item">
+                                        <a href="<%= author.profile.links.github %>"
+                                            target="_blank">
+                                            <i class="fab fa-github"></i>
+                                           </a>
+                                        </li>
+                                 <%}%>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+    </div>
+
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

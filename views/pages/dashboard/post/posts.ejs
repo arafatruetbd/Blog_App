@@ -1,0 +1,57 @@
+<%- include('../../../partials/head.ejs') %>
+<div class="container my-container my-2">
+    <div class="row">
+        <div class="col-md-3">
+            <%- include('../../../partials/sidebar.ejs') %>
+        </div>
+        <div class="col-md-9 card card-body my-2">
+              <h1 class="text-center display-5">List of My Post</h1>
+               <div class="row">
+              
+                    <% if (posts.length == 0){ %>
+                        <div class="text-muted text-center offset-md-4">
+                          <p>There are No Posts Available Right Now</p>
+                          <a href="/posts/create" class="btn btn-primary btn-sm">Create Post now</a>
+                        </div>
+                  <% } else{ %>
+                    <% for (let post of posts) { %>
+                      <div class="col-md-12">
+                      <div class="blog-entry ftco-animate d-md-flex">
+                        <% if (post.thumbnail){ %>
+                          <img src="<%= post.thumbnail %>" alt="<%= post.tittle %>" class="img-fluid"
+                          style="width: 200px;height:150px">
+                        <% } %>  
+                        <div class="text text-2 pl-md-4">
+                             <h3><a href="/explorer/<%= post._id %>" style="color: black;">
+                            <%= post.tittle %>
+                           </a></h3> 
+                          <p class="mb-4"><%= truncate(post.body) %></p>
+                          <p><a href="/explorer/<%= post._id %>" class="btn-custom">Read More </a>
+                            <a href="/posts/edit/<%= post._id %>" class="btn-custom ml-2" style="color: black;">Edit Post</a>
+                            <a href="/posts/delete/<%= post._id %>" class="btn-custom ml-2" style="color: red;">Delete Post</a>
+                             
+                          </p>
+                         
+                        </div>
+                        
+                      </div>
+                     
+                      </div>
+                       <% }%>  
+                    <% }%>
+
+
+            
+               </div>
+            </div>
+        </div>
+       
+
+</div>
+
+</div>
+<%- include('../../../partials/footer.ejs') %>
+
+</body>
+</html>
+

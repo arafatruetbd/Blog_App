@@ -1,0 +1,77 @@
+<%- include('../../partials/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.css">
+
+<div class="container my-container my-2">
+    <div class="row">
+        <div class="col-md-3">
+          <%- include('../../partials/sidebar.ejs') %>
+        </div>
+        <div class="col-md-9 my-2">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p> <img src="<%= profile.profilePic %>" 
+                                        alt=""
+                                        class="img-thumbnail img-fluid rounded-circle"
+                                        style="width: 300px;height: 300px;"></p>
+                                   
+                              
+                                    <h4 class="card-title"><%=profile.name %></h4>
+                                    <h4 class="card-title"><%=profile.tittle %></h4>
+                                    <p class="card-text"><%=profile.bio %></p>
+                                    <ul class="list-inline">
+                                        <% if (profile.links.website){ %>
+                                            <li class="list-inline-item">
+                                                <a href="<%= profile.links.website %>"
+                                                    target="_blank">
+                                                    <i class="fa fa-internet-explorer"></i>
+                                                   </a>
+                                                </li>
+                                         <%}%>
+        
+                                         <% if (profile.links.facebook){ %>
+                                            <li class="list-inline-item">
+                                                <a href="<%= profile.links.facebook %>"
+                                                    target="_blank">
+                                                    <i class="fab fa-facebook"></i>
+                                                   </a>
+                                                </li>
+                                         <%}%>
+        
+                                         <% if (profile.links.twitter){ %>
+                                            <li class="list-inline-item">
+                                                <a href="<%= profile.links.twitter %>"
+                                                    target="_blank">
+                                                    <i class="fab fa-twitter"></i>
+                                                   </a>
+                                                </li>
+                                         <%}%>
+        
+                                         <% if (profile.links.github){ %>
+                                            <li class="list-inline-item">
+                                                <a href="<%=profile.links.github %>"
+                                                    target="_blank">
+                                                    <i class="fab fa-github"></i>
+                                                   </a>
+                                                </li>
+                                         <%}%>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+               
+                </div>
+            </div>
+            </div>
+     
+<%- include('../../partials/footer.ejs') %>
+
+</body>
+</html>
+
