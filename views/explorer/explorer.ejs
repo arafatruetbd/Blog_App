@@ -26,38 +26,40 @@
       </div>
 <% } else{ %>
   <% for (let post of posts) { %>
-    <div class="col-md-12">
-    <div class="blog-entry ftco-animate d-md-flex">
-      <% if (post.thumbnail){ %>
-        <img src="<%= post.thumbnail %>" alt="<%= post.tittle %>" class="img-fluid"
-        style="width: 200px;height:150px">
-      <% } %>  
-      <div class="text text-2 pl-md-4">
-           <h3><a href="/explorer/<%= post._id %>" style="color: black;">
-          <%= post.tittle %>
-         </a></h3> 
-        <div class="meta-wrap">
-          <p class="meta">
-            <span><i class="icon-calendar mr-2"></i><%= moment(post.createdAt) %>,</span>
-            <span> posted By <a href="/author/<%=post.author._id%>"><%= post.author.username %>,</a></span>
-            <span><%= post.readTime %></span>
-          </p>
+    <div class="card p-3">
+      <div class="col-md-12">
+        <div class="blog-entry ftco-animate d-md-flex">
+          <% if (post.thumbnail){ %>
+            <img src="<%= post.thumbnail %>" alt="<%= post.tittle %>" class="img-fluid"
+            style="width: 200px;height:150px">
+          <% } %>  
+          <div class="text text-2 pl-md-4">
+               <h3><a href="/explorer/<%= post._id %>" style="color: black;">
+              <%= post.tittle %>
+             </a></h3> 
+            <div class="meta-wrap">
+              <p class="meta">
+                <span><i class="icon-calendar mr-2"></i><%= moment(post.createdAt) %>,</span>
+                <span> Posted By <a href="/author/<%=post.author._id%>"><%= post.author.username %>,</a></span>
+                <span><%= post.readTime %></span>
+              </p>
+            </div>
+            <p class="mb-4"><%= truncate(post.body) %></p>
+            <p><a href="/explorer/<%= post._id %>" class="btn btn-primary btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+          </div>
+          <% if (user) { %>
+            <span class="ml-auto bookmarks" data-post="<%= post._id %>">
+              <% if (bookmarks.includes(post._id)) { %>
+                <i class="fas fa-bookmark"></i>
+                <% }else{ %>
+                  <i class="far fa-bookmark"></i>
+                  <% } %>
+            </span>
+           <% } %>
+          
         </div>
-        <p class="mb-4"><%= truncate(post.body) %></p>
-        <p><a href="/explorer/<%= post._id %>" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-      </div>
-      <% if (user) { %>
-        <span class="ml-auto bookmarks" data-post="<%= post._id %>">
-          <% if (bookmarks.includes(post._id)) { %>
-            <i class="fas fa-bookmark"></i>
-            <% }else{ %>
-              <i class="far fa-bookmark"></i>
-              <% } %>
-        </span>
-       <% } %>
-      
-    </div>
-   
+       
+        </div>
     </div>
      <% }%>  
   <% }%>
@@ -67,8 +69,8 @@
               <div class="card-footer">
                 <% if(totalPage > 1 ) { %>
                   <nav>
-                    <ul class="pagination">
-                      <li class="page-item <%= currentPage ==1 ? 'disable' : ''%> ">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item <%= currentPage ==1 ? 'disabled' : ''%> ">
  
                         <a class="page-link" href="<%= `/explorer?filter=${filter}&page=${currentPage-1}`%>" >Previous</a>
                       </li>
@@ -80,7 +82,7 @@
                       <% } %>
 
 
-                      <li class="page-item <%= currentPage == totalPage ? 'disable' : ''%> ">
+                      <li class="page-item <%= currentPage == totalPage ? 'disabled' : ''%> ">
                         <a class="page-link" href="<%=`/explorer?filter=${filter}&page=${currentPage+1}`%>" >Next</a>
                       </li>
                   

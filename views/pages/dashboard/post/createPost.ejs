@@ -51,11 +51,12 @@
                           <span class="input-group-text">Upload</span>
                         </div>
                         <div class="custom-file">
-                          <input type="file" name="post-thumbnail" class="custom-file-input" id="inputGroupFile01">
-                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                          <input type="file" name="post-thumbnail" class="custom-file-input" id="inputGroupFile">
+                          <label  for="inputGroupFile" class="custom-file-label">Choose file</label>
                         </div>
                       </div>
-                   <button class="btn btn-success" value="submit">Create Post</button>
+                   <!-- <button class="btn btn-success" value="submit">Create Post</button> -->
+                   <input type="submit" value="Create Post" class="btn btn-primary">
                    </form>
             </div>
         </div>
@@ -64,8 +65,15 @@
 </div>
 
 <%- include('../../../partials/footer.ejs') %>
+<script>
+  $('#inputGroupFile').on('change', function(e){
+    let filename =e.target.files[0].name
+    $(this).next('.custom-file-label').html(filename)
+  })
+</script>
 <script src="https://cdn.tiny.cloud/1/j3bqi8dbqly87kfhgz4451s9bkrt5katofe8arm2xi5jujkp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="/scripts/tinyMce.js"></script> 
+
 </body>
 </html>
 

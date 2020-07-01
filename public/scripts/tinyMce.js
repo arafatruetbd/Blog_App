@@ -8,7 +8,7 @@ window.onload = function () {
     automatic_uploads: true,
     images_upload_url: '/uploads/postImage',
     relative_urls: false,
-    images_upload_handler: function (blobInfo, success, failer) {
+    images_upload_handler: function (blobInfo, success, failure) {
       let headers = new Headers();
       headers.append('Accept', 'Application/JSON');
       let formData = new FormData();
@@ -23,7 +23,7 @@ window.onload = function () {
       fetch(req)
         .then((res) => res.json())
         .then((data) => success(data.imgUrl))
-        .catch(() => failer('http error'));
+        .catch(() => failure('http error'));
     },
   });
 };

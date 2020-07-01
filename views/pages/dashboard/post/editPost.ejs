@@ -4,7 +4,7 @@
         <div class="col-md-3">
           <%- include('../../../partials/sidebar.ejs') %>
         </div>
-        <div class="col-md-9 card card-body">
+        <div class="col-md-9 card card-body my-2">
               <h5 class="my-3">Edit Your Post</h5>
                 <form action='/posts/edit/<%=post._id %>' method='POST' enctype="multipart/form-data">
                     <div class="form-group">
@@ -61,12 +61,12 @@
                           <span class="input-group-text">Upload</span>
                         </div>
                         <div class="custom-file">
-                          <input type="file" name="post-thumbnail" class="custom-file-input" id="inputGroupFile01">
-                          <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
+                          <input type="file" name="post-thumbnail" class="custom-file-input" id="inputGroupFile">
+                          <label class="custom-file-label" for="inputGroupFile">Choose File</label>
                         </div>
                       </div>
                    <button class="btn btn-success" value="submit">Update Post</button>
-                   <a  href="/posts/delete/<%= post._id %>" class="btn btn-danger">Delete</a>
+                   <a  href="/posts/delete/<%= post._id %>" class="btn btn-danger">Delete Post</a>
                   </form>
             </div>
         </div>
@@ -76,6 +76,12 @@
 
 
 <%- include('../../../partials/footer.ejs') %>
+<script>
+  $('#inputGroupFile').on('change', function(e){
+    let filename =e.target.files[0].name
+    $(this).next('.custom-file-label').html(filename)
+  })
+</script>
 <script src="https://cdn.tiny.cloud/1/j3bqi8dbqly87kfhgz4451s9bkrt5katofe8arm2xi5jujkp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="/scripts/tinyMce.js"></script> 
 </body>

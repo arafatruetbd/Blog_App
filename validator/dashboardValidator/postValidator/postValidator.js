@@ -17,8 +17,4 @@ module.exports=[
       }
       return true
     })
-
-
-
-
 ]

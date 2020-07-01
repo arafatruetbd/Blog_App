@@ -93,10 +93,8 @@ exports.editPostGetController = async (req, res, next) => {
 
 exports.editPostPostController = async (req, res, next) => {
   let { tittle, body, tags } = req.body;
-
   let errors = validationResult(req).formatWith(errorFormter);
   let postId = req.params.postId;
-
   try {
     let post = await Post.findOne({ author: req.user._id, _id: postId });
     if (!post) {
@@ -118,7 +116,7 @@ exports.editPostPostController = async (req, res, next) => {
     }
     let thumbnail = post.thumbnail;
     if (req.file) {
-      thumbnail = req.file.thumbnail;
+      thumbnail = req.file.filename;
     }
 
     await Post.findOneAndUpdate(
@@ -127,7 +125,7 @@ exports.editPostPostController = async (req, res, next) => {
       { new: true }
     );
     req.flash('success', 'Post Updated Successfully');
-    res.redirect('/posts/edit/' + post._id);
+    res.redirect('/posts/edit/'+post._id);
   } catch (error) {
     next(error);
   }
