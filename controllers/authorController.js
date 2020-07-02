@@ -1,5 +1,6 @@
 const Flash = require('../utils/Flash');
 const User = require('../models/User');
+const { populate } = require('../models/User');
 exports.authorProfileGetController = async (req, res, next) => {
   let userId = req.params.userId;
   try {
@@ -14,5 +15,7 @@ exports.authorProfileGetController = async (req, res, next) => {
       flashMessage: Flash.getMessage(req),
       author,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };

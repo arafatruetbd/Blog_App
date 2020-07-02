@@ -1,54 +1,63 @@
-const {Schema,model}=require('mongoose');
+const { Schema, model } = require('mongoose');
 const Comment = require('./Comments');
 
-const postSchema=new Schema({
-    tittle:{
-        type: String,
-        trim: true,
-        maxlength: 100,
-        required: true
+const postSchema = new Schema(
+  {
+    tittle: {
+      type: String,
+      trim: true,
+      maxlength: 100,
+      required: true,
     },
-    body:{
-        type:String,
-        trim: true,  
+    body: {
+      type: String,
+      trim: true,
     },
     author: {
-    type: Schema.Types.ObjectId,
-     ref: 'User',
-     required: true
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
     tags: {
-     type: [String],
-     required: true
+      type: [String],
+      required: true,
     },
     thumbnail: String,
     readTime: String,
 
     likes: [
-        {
+      {
         type: Schema.Types.ObjectId,
-        ref: 'User' 
-
-        }
+        ref: 'User',
+      },
     ],
-    dislikes: [  {
+    dislikes: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'User' 
-
-        }
+        ref: 'User',
+      },
     ],
     comments: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: Comment
-        }
-    ]
-},
-{
-    timestamps:true
-})
-postSchema.index({tittle: `text`, tags: `text`, body: `text`})
+      {
+        type: Schema.Types.ObjectId,
+        ref: Comment,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
+postSchema.index(
+  { tittle: `text`, tags: `text`, body: `text` },
+  {
+    weights: {
+      tittle: 5,
+      tags: 5,
+      body: 2,
+    },
+  }
+);
 
-
-const Post = model('Post',postSchema);
-module.exports= Post;
+const Post = model('Post', postSchema);
+module.exports = Post;

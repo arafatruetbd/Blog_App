@@ -53,7 +53,53 @@
                                
                             </ul>
                         </div>
+                    <% if(author._id.equals(user._id)) { %>
+                        
+                        
+                    <% } else {  %>
+                        <div class="card-title text-center mb-0"><h3>Post of <%= author.profile.name %></h3></div>
+                         
+                        <div class="card-body">
+                          <% if (author.profile.posts.length == 0){ %>
+                            <div class="text-center text-muted">
+                              <p>There is No Posts Available Right Now</p>
+                            </div>
+                      <% } else{ %>
+                        <% for (let post of author.profile.posts) { %>
+                          <div class="card p-3">
+                            <div class="col-md-12">
+                              <div class="blog-entry ftco-animate d-md-flex">
+                                <% if (post.thumbnail){ %>
+                                  <img src="<%= post.thumbnail %>" alt="<%= post.tittle %>" class="img-fluid"
+                                  style="width: 200px;height:150px">
+                                <% } %>  
+                                <div class="text text-2 pl-md-4">
+                                     <h3><a href="/explorer/<%= post._id %>" style="color: black;">
+                                    <%= post.tittle %>
+                                   </a></h3> 
+                                  <div class="meta-wrap">
+                                    <p class="meta">
+                                      <span><i class="icon-calendar mr-2"></i><%= moment(post.createdAt) %>,</span>
+                                      <span> Posted By <a href="/author/<%=post.author._id%>"><%= author.profile.name %>,</a></span>
+                                      <span><%= post.readTime %></span>
+                                    </p>
+                                  </div>
+                                  <p class="mb-4"><%= truncate(post.body) %></p>
+                                  <p><a href="/explorer/<%= post._id %>" class="btn btn-primary btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                                </div>   
+                              </div>
+                             
+                              </div>
+                          </div>
+                           <% }%>  
+                        <% }%>
+                      
+                             
+                      </div>
+                    <% } %> 
+
                     </div>
+                 
                 </div>
             </div>
      

@@ -43,7 +43,7 @@ exports.explorerGetController = async (req, res, next) => {
   let filter = req.query.filter || 'letest';
 
   let currentPage = parseInt(req.query.page) || 1;
-  itemPerPage = 1;
+  itemPerPage = 10;
 
   let { order, filterObj } = generateFilterObject(filter.toLowerCase());
 

@@ -25,7 +25,6 @@ let posts = await Post.find({ $text:{
        currentPage,
        totalPage,
        posts
-
    })
     
 } catch (error) {
